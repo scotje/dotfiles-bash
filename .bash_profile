@@ -54,4 +54,26 @@ fi
 # user binpath
 export PATH="$PATH:$HOME/bin"
 
+# Add a CLI countdown timer function.
+function countdown(){
+  date1=$((`gdate +%s` + $1));
+
+  while [ "$date1" -ne `gdate +%s` ]; do
+    echo -ne "$(gdate -u --date @$(($date1 - `gdate +%s`)) +%H:%M:%S)\r";
+    sleep 0.1
+  done
+
+  /usr/bin/afplay /System/Library/Sounds/Glass.aiff
+}
+
+# Add a CLI stopwatch function.
+function stopwatch(){
+  date1=`gdate +%s`;
+
+  while true; do
+    echo -ne "$(gdate -u --date @$((`gdate +%s` - $date1)) +%H:%M:%S)\r";
+    sleep 0.1
+  done
+}
+
 include ~/.bash_local
