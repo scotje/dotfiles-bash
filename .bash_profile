@@ -12,14 +12,14 @@ alias tmux='tmux -2'
 
 # Mac OS X uses path_helper to preload PATH, clear it out first
 if [ -x /usr/libexec/path_helper ]; then
-  PATH=''
+  export PATH=''
   eval `/usr/libexec/path_helper -s`
 fi
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-source ~/.rbenv/completions/rbenv.bash
+. ~/.rbenv/completions/rbenv.bash
 
 
 # homebrew
